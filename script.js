@@ -19,7 +19,6 @@ const spanner=score_Shower.querySelectorAll('span');
 const res=score_Shower.querySelectorAll('div');
 let res_flag=0;
 let theme_toggler=document.querySelector('header svg');
-console.log(res);
 function number_ret(a){
     if(a=="rock"){
         return 0;
@@ -171,7 +170,6 @@ imgs.forEach(data=>{
             cnt=1;
             score='';
         }
-        console.log(user,comp,main_comp,main_user);
         if(user===0 && comp===0){
             score='';
         }
