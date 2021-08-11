@@ -136,6 +136,8 @@ imgs.forEach(data=>{
         else{
             score+=`<div class="score"><span class="winner">1</span><span class="winner">1</span></div>`;
         }
-        score_board_cont.innerHTML=score;
+        setTimeout(()=>{
+            score_board_cont.innerHTML=score;
+        },1700);
     });
 });
