@@ -67,8 +67,16 @@ header img{
     min-height: 600px;
     flex: 1;
 }
-.main-content-cont img{
+.main-content-cont svg{
     width: 200px;
+    height: 138px;
+}
+.main-content-cont svg path{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .score-board-cont{
     display: flex;

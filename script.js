@@ -1,3 +1,5 @@
+import { paths } from "./path.js";
+
 function number_ret(a){
     if(a=="rock"){
         return 0;
@@ -11,13 +13,13 @@ function number_ret(a){
 }
 let user;
 let comp;
-const comp_icon=document.querySelector('.computer-icon-cont');
-const player_icon=document.querySelector('.player-icon-cont');
+const comp_icon=document.querySelector('.computer-icon-cont svg');
+const player_icon=document.querySelector('.player-icon-cont svg');
 function img_updater(){
     for(let i=2;i>=0;i--){
         setTimeout(()=>{
-            comp_icon.innerHTML=`<img src="./assets/${i}r.svg" alt="">`;
-            player_icon.innerHTML=`<img src="./assets/${i}.svg" alt="">`;
+            comp_icon.innerHTML=`${paths[`${i}r`]}`;
+            player_icon.innerHTML=`${paths[`${i}`]}`;
         },i*100);
     }
 }
@@ -25,13 +27,13 @@ function gamePlay(a1){
     let a=number_ret(a1);
     let b=Math.floor(Math.random()*3);
     for(let i=0;i<=4;i++){
-    setTimeout(()=>{
-        img_updater();
-    },i*300);
+        setTimeout(()=>{
+            img_updater();
+        },i*300);
     }
     setTimeout(()=>{
-        player_icon.innerHTML=`<img src="./assets/${a}.svg" alt="">`;
-        comp_icon.innerHTML=`<img src="./assets/${b}r.svg" alt="">`;
+        player_icon.innerHTML=`${paths[`${a}`]}`;
+        comp_icon.innerHTML=`${paths[`${b}r`]}`;
     },1500);
     if(a==b){
         user++;
