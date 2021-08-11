@@ -17,6 +17,7 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 header{
     display: flex;
@@ -66,24 +67,38 @@ header img{
     align-items: center;
     min-height: 600px;
     flex: 1;
+    overflow-x: hidden;
 }
-.main-content-cont svg{
-    width: 200px;
-    height: 138px;
-}
-.main-content-cont svg path{
-    height: 100%;
-    width: 100%;
+.main-content-cont .spanner{
+    min-height: clamp(80px,5vw,200px);
+    min-width: clamp(80px,5vw,200px);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+}
+.spanner svg{
+    width: 100%;
+}
+.player-icon-cont, .computer-icon-cont{
+    min-width: 200px;
+}
+.p_svg{
+    transform: rotateX(0deg) rotateY(180deg) rotateZ(270deg);
+}
+.comp_svg{
+    transform: rotateX(0deg) rotateY(180deg) rotateZ(90deg);
+}
+.svg_comp{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
 }
 .score-board-cont{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    min-width: 200px;
+    min-width: clamp(150px,5vw,200px);
     min-height: 400px;
     max-height: 550px;
     overflow: auto;
@@ -116,11 +131,27 @@ footer{
     width: 100%;
 }
 footer img{
-    width: 120px;
+    width: clamp(50px,5vw,100px);
     cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+}
+footer img:hover{
+    transform: rotate(90deg);
 }
 footer{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    overflow: hidden;
+}
+@media (max-width:557px){
+    .player-icon-cont, .computer-icon-cont{
+        min-width: 10px;
+    }
+}
+@media (max-width:337px){
+    .main-content-cont svg{
+        width: 40px;
+    }
 }

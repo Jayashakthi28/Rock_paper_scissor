@@ -14,8 +14,8 @@ function number_ret(a){
 let user;
 let comp;
 let score='';
-const comp_icon=document.querySelector('.computer-icon-cont svg');
-const player_icon=document.querySelector('.player-icon-cont svg');
+const comp_icon=document.querySelector('.computer-icon-cont div');
+const player_icon=document.querySelector('.player-icon-cont div');
 const score_board_cont=document.querySelector(".score-board-cont");
 function img_updater(){
     for(let i=2;i>=0;i--){
@@ -37,6 +37,15 @@ function gamePlay(a1){
         player_icon.innerHTML=`${paths[`${a}`]}`;
         comp_icon.innerHTML=`${paths[`${b}r`]}`;
     },1500);
+    setTimeout(()=>{
+        player_icon.classList.add("svg_comp");
+        comp_icon.classList.add("svg_comp");
+    },1500);
+    setTimeout(()=>{
+        player_icon.classList.remove("svg_comp");
+        comp_icon.classList.remove("svg_comp");
+    },3000);
+
     if(a==b){
         user++;
         comp++;
@@ -111,9 +120,12 @@ function PosEnd(end) {
 /********************************************/
 let cnt=1;
 comp=0,user=0;
+let click_flag=true;
 const imgs=document.querySelectorAll('footer img');
 imgs.forEach(data=>{
     data.addEventListener("click",()=>{
+        if(!click_flag) return;
+        click_flag=false;
         user=0;
         comp=0;
         gamePlay(data.dataset.value);
@@ -138,6 +150,7 @@ imgs.forEach(data=>{
         }
         setTimeout(()=>{
             score_board_cont.innerHTML=score;
-        },1700);
+            click_flag=true;
+        },3000);
     });
 });
