@@ -13,8 +13,10 @@ function number_ret(a){
 }
 let user;
 let comp;
+let score='';
 const comp_icon=document.querySelector('.computer-icon-cont svg');
 const player_icon=document.querySelector('.player-icon-cont svg');
+const score_board_cont=document.querySelector(".score-board-cont");
 function img_updater(){
     for(let i=2;i>=0;i--){
         setTimeout(()=>{
@@ -111,15 +113,29 @@ let cnt=1;
 comp=0,user=0;
 const imgs=document.querySelectorAll('footer img');
 imgs.forEach(data=>{
-    if(cnt<=6){
     data.addEventListener("click",()=>{
+        user=0;
+        comp=0;
         gamePlay(data.dataset.value);
+        if(cnt<=6){
         cnt++;
+        }
+        else{
+            comp=0;
+            user=0;
+            cnt=1;
+            score='';
+        }
         console.log(user,comp);
+        if(user>comp){
+            score+=`<div class="score"><span class="winner">1</span><span class="loser">0</span></div>`;
+        }
+        else if(comp>user){
+            score+=`<div class="score"><span class="loser">0</span><span class="winner">1</span></div>`;
+        }
+        else{
+            score+=`<div class="score"><span class="winner">1</span><span class="winner">1</span></div>`;
+        }
+        score_board_cont.innerHTML=score;
     });
-    }
-    else{
-        cnt=1;
-    }
-
-})
+});
