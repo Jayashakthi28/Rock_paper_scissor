@@ -1,5 +1,25 @@
 import { paths } from "./path.js";
 
+
+let click_flag=true;
+let user;
+let comp;
+let main_comp=0;
+let main_user=0;
+let score='';
+const comp_icon=document.querySelector('.computer-icon-cont div');
+const player_icon=document.querySelector('.player-icon-cont div');
+const score_board_cont=document.querySelector(".score-board-cont");
+const player_name_inp=document.querySelector('.player-name-inp');
+const player_name_h2=document.querySelector('.player-name-h2');
+let name='Player Name';
+let cnt=1;
+const score_Shower=document.querySelector('.score-shower');
+const spanner=score_Shower.querySelectorAll('span');
+const res=score_Shower.querySelectorAll('div');
+let res_flag=0;
+let theme_toggler=document.querySelector('header svg');
+console.log(res);
 function number_ret(a){
     if(a=="rock"){
         return 0;
@@ -11,12 +31,7 @@ function number_ret(a){
         return 2;
     }
 }
-let user;
-let comp;
-let score='';
-const comp_icon=document.querySelector('.computer-icon-cont div');
-const player_icon=document.querySelector('.player-icon-cont div');
-const score_board_cont=document.querySelector(".score-board-cont");
+
 function img_updater(){
     for(let i=2;i>=0;i--){
         setTimeout(()=>{
@@ -25,6 +40,7 @@ function img_updater(){
         },i*100);
     }
 }
+
 function gamePlay(a1){
     let a=number_ret(a1);
     let b=Math.floor(Math.random()*3);
@@ -51,7 +67,7 @@ function gamePlay(a1){
         comp++;
     }
     else if(a==0 && b==1){
-        comp++
+        comp++;
     }
     else if(a==0 && b==2){
         user++;
@@ -68,11 +84,11 @@ function gamePlay(a1){
     else if(a==2 && b==1){
         user++;
     }
+    main_comp+=comp;
+    main_user+=user;
 }
 /*Player Name Toggler */
-const player_name_inp=document.querySelector('.player-name-inp');
-const player_name_h2=document.querySelector('.player-name-h2');
-let name='Player Name';
+
 player_name_inp.addEventListener("input",()=>{
     if(player_name_inp.value.length<=10){
         name=player_name_inp.value;
@@ -118,9 +134,9 @@ function PosEnd(end) {
     }
 }
 /********************************************/
-let cnt=1;
+
 comp=0,user=0;
-let click_flag=true;
+
 const imgs=document.querySelectorAll('footer img');
 imgs.forEach(data=>{
     data.addEventListener("click",()=>{
@@ -131,15 +147,35 @@ imgs.forEach(data=>{
         gamePlay(data.dataset.value);
         if(cnt<=6){
         cnt++;
+
         }
         else{
             comp=0;
             user=0;
+            spanner[0].innerText=`${main_user*10}`;
+            spanner[1].innerText=`${main_comp*10}`;
+            if(main_user>main_comp){
+                res[2].innerText="User Wins"
+            }
+            else if(main_comp>main_user){
+                res[2].innerText="Computer Wins";
+            }
+            else{
+                res[2].innerText="Match Draw";
+            }
+            setTimeout(()=>{
+                scorer();
+            },3000);
+            main_comp=0;
+            main_user=0;
             cnt=1;
             score='';
         }
-        console.log(user,comp);
-        if(user>comp){
+        console.log(user,comp,main_comp,main_user);
+        if(user===0 && comp===0){
+            score='';
+        }
+        else if(user>comp){
             score+=`<div class="score"><span class="winner">1</span><span class="loser">0</span></div>`;
         }
         else if(comp>user){
@@ -154,3 +190,25 @@ imgs.forEach(data=>{
         },3000);
     });
 });
+
+function scorer(){
+        score_Shower.classList.toggle('none');
+    setTimeout(()=>{
+         score_Shower.classList.add('none');
+    },2000);
+    score_board_cont.innerHTML='';
+}
+
+let toggler=1;
+theme_toggler.addEventListener("click",()=>{
+    if(toggler===1){
+        document.documentElement.style.setProperty("--sec-color",'#f7fff7');
+        document.documentElement.style.setProperty("--main-color","#1a535c");
+        toggler=0;
+    }
+    else{
+        document.documentElement.style.setProperty("--sec-color",'#1a535c');
+        document.documentElement.style.setProperty("--main-color","#f7fff7");
+        toggler=1;
+    }
+})
