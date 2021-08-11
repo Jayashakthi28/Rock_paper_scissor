@@ -36,6 +36,7 @@ header h1{
 }
 header svg{
     width: 30px;
+    cursor: pointer;
     margin-right: 1rem;
 }
 header svg path{
