@@ -77,7 +77,7 @@ header svg path{
     overflow-x: hidden;
 }
 .main-content-cont .spanner{
-    min-height: clamp(80px,5vw,200px);
+    height: 500px;
     min-width: clamp(80px,5vw,200px);
     display: flex;
     justify-content: center;
