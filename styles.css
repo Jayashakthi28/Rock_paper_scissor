@@ -173,6 +173,9 @@ footer{
 .none{
     display: none;
 }
+.main-scorer{
+    display: flex;
+}
 @media (max-width:557px){
     .player-icon-cont, .computer-icon-cont{
         min-width: 10px;

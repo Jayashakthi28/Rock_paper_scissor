@@ -19,6 +19,7 @@ const spanner=score_Shower.querySelectorAll('span');
 const res=score_Shower.querySelectorAll('div');
 let res_flag=0;
 let theme_toggler=document.querySelector('header svg');
+let main_score_board=document.querySelector('.main-scorer');
 function number_ret(a){
     if(a=="rock"){
         return 0;
@@ -153,6 +154,10 @@ imgs.forEach(data=>{
             user=0;
             spanner[0].innerText=`${main_user*10}`;
             spanner[1].innerText=`${main_comp*10}`;
+            setTimeout(()=>{
+                main_score_board.innerHTML=`<div class="winner">${main_user*10}</div>
+                <div class="loser">${main_comp*10}</div>`;
+            },3000);
             if(main_user>main_comp){
                 res[2].innerText="User Wins"
             }
@@ -164,7 +169,7 @@ imgs.forEach(data=>{
             }
             setTimeout(()=>{
                 scorer();
-            },3000);
+            },3500);
             main_comp=0;
             main_user=0;
             cnt=1;
@@ -184,6 +189,8 @@ imgs.forEach(data=>{
         }
         setTimeout(()=>{
             score_board_cont.innerHTML=score;
+            main_score_board.innerHTML=`<div class="winner">${main_user*10}</div>
+            <div class="loser">${main_comp*10}</div>`;
             click_flag=true;
         },3000);
     });
